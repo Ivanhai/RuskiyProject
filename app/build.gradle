@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'com.ivanhai.ruskiyproject'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         ndk {
@@ -15,12 +15,12 @@ android {
         python {
             pip {
                 install "spacy"
-                install "-r", "requirements.txt"
+                install "spacy-stanza<0.3.0"
             }
         }
         applicationId "com.ivanhai.ruskiyproject"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
