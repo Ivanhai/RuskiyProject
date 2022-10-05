@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
+import com.ivanhai.ruskiyproject.spacy.Spacy
 import com.ivanhai.ruskiyproject.ui.theme.RuskiyProjectTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,6 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         if(!Python.isStarted()) {
             Python.start(AndroidPlatform(this))
+            Spacy.install()
         }
         setContent {
             RuskiyProjectTheme {
@@ -37,5 +39,6 @@ class MainActivity : ComponentActivity() {
 fun Greeting(name: String) {
     val coroutineScope = rememberCoroutineScope()
     val (text, setText) = remember { mutableStateOf(name) }
+    setText(Spacy.print(name)[0].call("text").toString())
     Text(text = text)
 }
