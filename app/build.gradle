@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.ivanhai.ruskiyproject"
-        minSdk 21
+        minSdk 28
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -40,11 +40,16 @@ android {
         kotlinCompilerExtensionVersion '1.1.1'
     }
     packagingOptions {
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'git.properties'
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
 }
+
+def ktor_version = "2.1.2"
 
 dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -59,6 +64,10 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
-    // NLP
-
+    // ktor
+    implementation "io.ktor:ktor-client-core:$ktor_version"
+    implementation "io.ktor:ktor-client-cio:$ktor_version"
+    implementation "io.ktor:ktor-client-content-negotiation:$ktor_version"
+    implementation "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
+    implementation "io.ktor:ktor-client-resources:$ktor_version"
 }

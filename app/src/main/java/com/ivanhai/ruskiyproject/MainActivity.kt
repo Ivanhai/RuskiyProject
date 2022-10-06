@@ -9,6 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import com.ivanhai.ruskiyproject.nlp.Builder
 import com.ivanhai.ruskiyproject.ui.theme.RuskiyProjectTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,5 +31,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
+    println(Builder(name).tokens)
     Text(text = name)
 }
