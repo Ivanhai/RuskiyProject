@@ -2,20 +2,18 @@ package com.ivanhai.ruskiyproject
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.asImageBitmap
 import com.ivanhai.ruskiyproject.ui.theme.RuskiyProjectTheme
 import com.ivanhai.ruskiyproject.ui.visualize.Visualizer
-import com.ivanhai.ruskiyproject.viewmodel.NLPViewModel
+import com.ivanhai.ruskiyproject.viewmodel.DocViewModel
 
 
 class MainActivity : ComponentActivity() {
@@ -28,7 +26,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Morph()
+                    Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
+                        Morph(DocViewModel("она упала, когда играла на улице"))
+                    }
                 }
             }
         }
@@ -36,11 +36,8 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Morph(viewModel: NLPViewModel = NLPViewModel()) {
-    viewModel.data("я шел и упал")
-    val result = viewModel.data.value
-
-    result?.let {
+fun Morph(viewModel: DocViewModel) {
+    viewModel.doc.value?.let {
         Visualizer(doc = it)
     }
 }

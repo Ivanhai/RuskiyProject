@@ -15,5 +15,6 @@ enum class Tag(val partOfSpeech: String) {
     PROPN("имя собственное"),
     SYM("символ"),
     ADV("наречие"),
+    SCONJ("союз"),
     X("другое")
 }

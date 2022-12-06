@@ -16,5 +16,8 @@ enum class Dep {
     nmod,
     amod,
     punct,
+    xcomp,
+    ccomp,
+    csubj,
     cc,
 }

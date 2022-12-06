@@ -8,6 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ivanhai.ruskiyproject.data.Dep
 import com.ivanhai.ruskiyproject.data.Doc
+import com.ivanhai.ruskiyproject.ui.visualize.text.DashDotLineText
+import com.ivanhai.ruskiyproject.ui.visualize.text.DashLineText
 import com.ivanhai.ruskiyproject.ui.visualize.text.OneLineText
 import com.ivanhai.ruskiyproject.ui.visualize.text.TwoLineText
 
@@ -17,8 +19,10 @@ fun Visualizer(doc: Doc) {
         doc.tokens.forEach { token ->
             when(token.dep) {
                 Dep.nsubj -> OneLineText(token.text)
-                Dep.ROOT, Dep.conj -> TwoLineText(token.text)
-                else -> Text(token.text)
+                Dep.ROOT, Dep.ccomp, Dep.csubj -> TwoLineText(token.text)
+                Dep.xcomp -> DashDotLineText(token.text)
+                Dep.obj -> DashLineText(token.text)
+                else -> {}
             }
         }
     }
