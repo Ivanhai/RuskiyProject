@@ -1,13 +1,16 @@
 package com.ivanhai.ruskiyproject.data
 
 
+import com.ivanhai.ruskiyproject.data.morphology.MorphologyData
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Token(
+    @SerialName("text")
+    val text: String,
     @SerialName("dep")
-    val dep: String,
+    val dep: Dep,
     @SerialName("end")
     val end: Int,
     @SerialName("head")
@@ -17,11 +20,11 @@ data class Token(
     @SerialName("lemma")
     val lemma: String,
     @SerialName("morph")
-    val morph: String,
+    val morph: MorphologyData,
     @SerialName("pos")
     val pos: Tag,
     @SerialName("start")
     val start: Int,
     @SerialName("tag")
-    val tag: Tag
+    val tag: Tag,
 )

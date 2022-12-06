@@ -1,13 +1,13 @@
 package com.ivanhai.ruskiyproject.data
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class NLPData(
-    @SerialName("ents")
-    val ents: List<Any>,
+data class Doc(
+// TODO entities
+//    @SerialName("ents")
+//    val ents: Nothing? = null,
     @SerialName("sents")
     val sents: List<Sent>,
     @SerialName("text")
