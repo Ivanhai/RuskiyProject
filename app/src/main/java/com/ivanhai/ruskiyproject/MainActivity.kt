@@ -1,24 +1,26 @@
 package com.ivanhai.ruskiyproject
 
+
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import com.chaquo.python.Python
-import com.chaquo.python.android.AndroidPlatform
+import androidx.compose.ui.graphics.asImageBitmap
 import com.ivanhai.ruskiyproject.ui.theme.RuskiyProjectTheme
+import com.ivanhai.ruskiyproject.ui.visualize.Visualizer
+import com.ivanhai.ruskiyproject.viewmodel.NLPViewModel
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(!Python.isStarted()) {
-            Python.start(AndroidPlatform(this))
-        }
         setContent {
             RuskiyProjectTheme {
                 // A surface container using the 'background' color from the theme
@@ -26,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Шла саша по шоссе и сосала сушку")
+                    Morph()
                 }
             }
         }
@@ -34,8 +36,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    val coroutineScope = rememberCoroutineScope()
-    val (text, setText) = remember { mutableStateOf(name) }
-    Text(text = text)
+fun Morph(viewModel: NLPViewModel = NLPViewModel()) {
+    viewModel.data("я шел и упал")
+    val result = viewModel.data.value
+
+    result?.let {
+        Visualizer(doc = it)
+    }
 }
